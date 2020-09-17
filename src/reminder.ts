@@ -5,7 +5,7 @@ export enum ReminderType {
 
 export interface Reminder {
     name: string
-    datetime: Date
+    schedule: string
     message: string
     types: Set<ReminderType>
 }
