@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 import { Config } from '../config';
 import { Reminder } from '../reminder';
 
+// Configure nodemailer email
 const mailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -10,7 +11,9 @@ const mailTransporter = nodemailer.createTransport({
     }
 });
 
-
+/**
+ * Sends email to yourself
+ */
 export function sendEmail(reminder: Reminder): Promise<void> {
     const mailDetails = {
         from: Config.REMINDER_EMAIL,

@@ -1,3 +1,7 @@
+/**
+ * Extract expected ENV variables into JS variables for use
+ * within the JS application.
+ */
 class AppConfig {
     REMINDER_EMAIL: string
     REMINDER_EMAIL_PASSWORD: string

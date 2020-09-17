@@ -2,10 +2,18 @@ import util from 'util';
 import { Reminder } from '../reminder';
 const exec = util.promisify(require('child_process').exec);
 
+/**
+ * Send platform specific desktop alert with given params.
+ */
 export async function sendDesktop(reminder: Reminder): Promise<void> {
-    // osascript -e 'display notification "Lorem ipsum dolor sit amet" with title "Title"'
+    let command = "";
+    switch (process.platform) {
+        case "darwin":
+            command = `osascript -e 'display notification "${reminder.message}" with title "${reminder.name}"'`
+        case "win32":
+            command = `msg * ${reminder.message}`
+    }
 
-    const command = `osascript -e 'display notification "${reminder.message}" with title "${reminder.name}"'`
     try {
         await exec(command);
     } catch (e) {
